@@ -87,9 +87,7 @@ void MQTTClient::SensorUpdate(uint16_t id, const Packet& packet)
             "\"temperature\": %.1f, "
             "\"humidity\": %d, "
             "\"battery\": \"%s\", "
-            "\"quality\": %d, "
-            "\"id\": %d, "
-            "\"channel\": %d "
+            "\"quality\": %d "
             "}";
 
     char payload[256];
@@ -98,9 +96,7 @@ void MQTTClient::SensorUpdate(uint16_t id, const Packet& packet)
             packet.GetTemperature(),
             packet.GetHumidity(),
             packet.GetBattery() ? Config::transmitter::battery_normal.c_str() : Config::transmitter::battery_low.c_str(),
-            packet.GetQualityPercent(),
-            packet.GetId(),
-            packet.GetChannel()+1
+            packet.GetQualityPercent()
     );
 
     char topic[256];
